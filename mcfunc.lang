@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 06:23:21 AM MDT
+		Wed 28 Jun 2017 10:11:33 AM MDT
 
-	Minecraft Functions Syntax Highlighting v0.0.3
+	Minecraft Functions Syntax Highlighting v0.0.4
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -129,15 +129,6 @@
 					<include>
 						<context sub-pattern="open" style-ref="data"/>
 						<context sub-pattern="close" style-ref="data"/>
-							<!--<match>\%{name}:</match>
-						</context>
-						<context ref="string"/>
-						<context ref="char"/>
-						<context ref="def:decimal"/>
-						<context ref="float"/>
-						<context style-ref="def:string" extend-parent="false">
-							<match>[\w.:_-]</match>
-						</context>-->
 					</include>
 				</context>
 	
