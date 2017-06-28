@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		Wed 28 Jun 2017 06:23:21 AM MDT
+
+	Minecraft Functions Syntax Highlighting v0.0.3
+
+	Author: nigathan <nigathan@justca.me>
+
+	For GTKSourceView
+
+	Known problems:
+
+		Curly braces embedded within curly braces are not
+	*	respected with their natural opening and closing.
+		Example:
+			summon minecraft:ocelot ~ ~ ~ {Attributes:[{Base:1.0,Name:"generic.movementSpeed"},{Base:8.0,Name:"generic.followRange"}],CustomName:"Lightning McKitty",CustomNameVisible:1}
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+-->
+
+<language id="mcfunc" _name="Minecraft Functions" version="2.0" _section="Script">
+	<metadata>
+		<property name="mimetypes">text/plain</property>
+		<property name="globs">*.mcfunction</property>
+		<property name="line-comment-start">#</property>
+	</metadata>
+	
+	<styles>
+		<style id="selector" _name="Target Selector" map-to="def:statement"/>
+	        <style id="type" _name="Commands" map-to="def:identifier"/>
+	        <style id="keyword" _name="Keywords" map-to="def:keyword"/>
+	        <style id="operator" _name="Operators" map-to="def:operator"/>
+		<style id="comment" _name="Comment" map-to="def:comment"/>
+		<style id="error" _name="Error" map-to="def:error"/>
+		<style id="warning" _name="Warning" map-to="def:warning"/>
+		<style id="string" _name="String" map-to="def:string"/>
+		<style id="data" _name="NBT Data Tag" map-to="def:statement"/>
+		<style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
+		<style id="namespace" _name="Namespace"/>
+	</styles>
+	
+	<definitions>
+		<context id="mcfunc">
+			<include>
+				<define-regex id="name">[[:alnum:]/.:_-]*</define-regex>
+				
+				<context id="float" style-ref="floating-point">
+					<match extended="true">
+						(?&lt;![\w\.])
+						((\.[0-9]+ | [0-9]+\.[0-9]*) ([+-]?[0-9]*)? |
+							([0-9]+[+-]?[0-9]*))
+						[fFdD]?
+						(?![\w\.])
+					</match>
+				</context>
+				
+				<context id="namespace">
+					<match>(\%{name}):(\%{name})</match>
+					<include>
+						<context sub-pattern="1" style-ref="def:special-char"/>
+						<context sub-pattern="2" style-ref="def:preprocessor"/>
+					</include>
+				</context>
+							
+				<context id="selector" end-at-line-end="true" style-ref="selector">
+					<start>@\w\[</start>
+					<end>\]</end>
+					<include>
+						<context ref="namespace"/>
+						<context style-ref="def:type" extend-parent="false">
+							<match>\%{name}=</match>
+						</context>
+						<context ref="def:decimal"/>
+						<context style-ref="def:preprocessor" extend-parent="false">
+							<match extended="true">(?&lt;==)([\w.:_-]+)</match>
+						</context>
+						<context style-ref="def:special-char" extend-parent="false">
+							<match extended="true">(?&lt;==)!([\w.:_-]+)</match>
+						</context>
+						<context style-ref="error" extend-parent="false">
+							<match>(.*)(\s)(.*)</match>
+							<include>
+								<context sub-pattern="1" style-ref="def:warning"/>
+								<context sub-pattern="2" style-ref="def:error"/>
+								<context sub-pattern="3" style-ref="def:warning"/>
+							</include>
+						</context>
+					</include>
+				</context>
+				
+				<context id="selector-empty" style-ref="selector">
+					<match>@\w</match>
+				</context>
+				
+				<context id="comment" style-ref="comment">
+					<start>#</start>
+					<end>$</end>
+				</context>
+				
+				<context id="error" style-ref="error">
+					<match>^(\/)(.*)$</match>
+					<include>
+						<context sub-pattern="1" style-ref="def:error"/>
+						<context sub-pattern="2" style-ref="def:warning"/>
+					</include>
+				</context>
+				
+				<context id="string" end-at-line-end="true" style-ref="string">
+					<start>"</start>
+					<end>"</end>
+				</context>
+				
+				<context id="char" end-at-line-end="true" style-ref="string">
+					<start>'</start>
+					<end>'</end>
+				</context>
+				
+				<context id="data" end-at-line-end="true" style-ref="data">
+					<start>{</start>
+					<end>}</end>
+					<include>
+						<context style-ref="def:type" extend-parent="false">
+							<match>\%{name}:</match>
+						</context>
+						<context ref="string"/>
+						<context ref="char"/>
+						<context ref="def:decimal"/>
+						<context ref="float"/>
+						<context style-ref="def:string" extend-parent="false">
+							<match>[\w.:_-]</match>
+						</context>
+					</include>
+				</context>
+	
+				<context ref="def:decimal"/>
+				
+				<context id="types" style-ref="type">
+					<keyword>advancement</keyword>
+					<keyword>blockdata</keyword>
+					<keyword>clear</keyword>
+					<keyword>clone</keyword>
+					<keyword>defaultgamemode</keyword>
+					<keyword>difficulty</keyword>
+					<keyword>effect</keyword>
+					<keyword>enchant</keyword>
+					<keyword>entitydata</keyword>
+					<keyword>execute</keyword>
+					<keyword>fill</keyword>
+					<keyword>function</keyword>
+					<keyword>gamemode</keyword>
+					<keyword>gamerule</keyword>
+					<keyword>give</keyword>
+					<keyword>help</keyword>
+					<keyword>kill</keyword>
+					<keyword>list</keyword>
+					<keyword>locate</keyword>
+					<keyword>me</keyword>
+					<keyword>particle</keyword>
+					<keyword>playsound</keyword>
+					<keyword>recipe</keyword>
+					<keyword>reload</keyword>
+					<keyword>replaceitem</keyword>
+					<keyword>say</keyword>
+					<keyword>scoreboard</keyword>
+					<keyword>seed</keyword>
+					<keyword>setblock</keyword>
+					<keyword>setworldspawn</keyword>
+					<keyword>spawnpoint</keyword>
+					<keyword>spreadplayers</keyword>
+					<keyword>stats</keyword>
+					<keyword>stopsound</keyword>
+					<keyword>summon</keyword>
+					<keyword>teleport</keyword>
+					<keyword>tp</keyword>
+					<keyword>tell</keyword>
+					<keyword>msg</keyword>
+					<keyword>w</keyword>
+					<keyword>tellraw</keyword>
+					<keyword>testfor</keyword>
+					<keyword>testforblock</keyword>
+					<keyword>testforblocks</keyword>
+					<keyword>time</keyword>
+					<keyword>title</keyword>
+					<keyword>toggledownfall</keyword>
+					<keyword>trigger</keyword>
+					<keyword>weather</keyword>
+					<keyword>worldborder</keyword>
+					<keyword>xp</keyword>
+				</context>
+				<context id="keywords" style-ref="keyword">
+					<keyword>players</keyword>
+					<keyword>objectives</keyword>
+					<keyword>grant</keyword>
+					<keyword>revoke</keyword>
+					<keyword>test</keyword>
+					<keyword>master</keyword>
+					<keyword>music</keyword>
+					<keyword>record</keyword>
+					<keyword>weather</keyword>
+					<keyword>block</keyword>
+					<keyword>hostile</keyword>
+					<keyword>neutral</keyword>
+					<keyword>player</keyword>
+					<keyword>ambient</keyword>
+					<keyword>voice</keyword>
+					<keyword>give</keyword>
+					<keyword>take</keyword>
+					<keyword>entity</keyword>
+					<keyword>AffectedBlocks</keyword>
+					<keyword>AffectedEntities</keyword>
+					<keyword>AffectedItems</keyword>
+					<keyword>QueryResult</keyword>
+					<keyword>SuccessCount</keyword>
+					<keyword>clear</keyword>
+					<keyword>rain</keyword>
+					<keyword>thunder</keyword>
+					<keyword>warning</keyword>
+					<keyword>damage</keyword>
+					<keyword>teams</keyword>
+					<keyword>color</keyword>
+					<keyword>seeFriendlyInvisibles</keyword>
+					<keyword>friendlyfire</keyword>
+					<keyword>nametagVisibility</keyword>
+					<keyword>deathMessageVisibility</keyword>
+					<keyword>collisionRule</keyword>
+					<keyword>sidebar</keyword>
+					<keyword>belowName</keyword>
+					<keyword>daytime</keyword>
+					<keyword>gametime</keyword>
+					<keyword>day</keyword>
+					<keyword>all</keyword>
+					<keyword>filtered</keyword>
+					<keyword>masked</keyword>
+					<keyword>replace</keyword>
+					<keyword>force</keyword>
+					<keyword>move</keyword>
+					<keyword>normal</keyword>
+					<keyword>destroy</keyword>
+					<keyword>hollow</keyword>
+					<keyword>keep</keyword>
+					<keyword>outline</keyword>
+					<keyword>subtitle</keyword>
+					<keyword>actionbar</keyword>
+					<keyword>times</keyword>
+					<keyword>dummy</keyword>
+					<keyword>deathCount</keyword>
+					<keyword>playerKillCount</keyword>
+					<keyword>totalKillCount</keyword>
+					<keyword>health</keyword>
+					<keyword>level</keyword>
+					<keyword>food</keyword>
+					<keyword>air</keyword>
+					<keyword>armor</keyword>
+					<keyword>achievement</keyword>
+					<keyword>stat</keyword>
+					<keyword>craftItem</keyword>
+					<keyword>useItem</keyword>
+					<keyword>breakItem</keyword>
+					<keyword>mineBlock</keyword>
+					<keyword>killEntity</keyword>
+					<keyword>pickup</keyword>
+					<keyword>drop</keyword>
+					<keyword>entityKilledBy</keyword>
+					<keyword>teamkill</keyword>
+					<keyword>killedByTeam</keyword>
+					<keyword>team</keyword>
+				</context>
+				<context id="operators" style-ref="operator">
+					<keyword>add</keyword>
+					<keyword>remove</keyword>
+					<keyword>tag</keyword>
+					<keyword>set</keyword>
+					<keyword>reset</keyword>
+					<keyword>query</keyword>
+					<keyword>only</keyword>
+					<keyword>until</keyword>
+					<keyword>from</keyword>
+					<keyword>through</keyword>
+					<keyword>everything</keyword>
+					<keyword>survival</keyword>
+					<keyword>creative</keyword>
+					<keyword>adventure</keyword>
+					<keyword>spectator</keyword>
+					<keyword>peaceful</keyword>
+					<keyword>easy</keyword>
+					<keyword>normal</keyword>
+					<keyword>hard</keyword>
+					<keyword>true</keyword>
+					<keyword>false</keyword>
+					<keyword>if</keyword>
+					<keyword>unless</keyword>
+					<keyword>s</keyword>
+					<keyword>c</keyword>
+					<keyword>a</keyword>
+					<keyword>sp</keyword>
+					<keyword>announceAdvancements</keyword>
+					<keyword>commandBlockOutput</keyword>
+					<keyword>disableElytraMovementCheck</keyword>
+					<keyword>doDaylightCycle</keyword>
+					<keyword>doEntityDrops</keyword>
+					<keyword>doFireTick</keyword>
+					<keyword>doLimitedCrafting</keyword>
+					<keyword>doMobLoot</keyword>
+					<keyword>doMobSpawning</keyword>
+					<keyword>doTileDrops</keyword>
+					<keyword>doWeatherCycle</keyword>
+					<keyword>gameLoopFunction</keyword>
+					<keyword>keepInventory</keyword>
+					<keyword>logAdminCommands</keyword>
+					<keyword>maxCommandChainLength</keyword>
+					<keyword>maxEntityCramming</keyword>
+					<keyword>mobGriefing</keyword>
+					<keyword>naturalRegeneration</keyword>
+					<keyword>randomTickSpeed</keyword>
+					<keyword>reducedDebugInfo</keyword>
+					<keyword>sendCommandFeedback</keyword>
+					<keyword>showDeathMessages</keyword>
+					<keyword>spawnRadius</keyword>
+					<keyword>spectatorsGenerateChunks</keyword>
+					<keyword>EndCity</keyword>
+					<keyword>Fortress</keyword>
+					<keyword>Mansion</keyword>
+					<keyword>Mineshaft</keyword>
+					<keyword>Monument</keyword>
+					<keyword>Stronghold</keyword>
+					<keyword>Temple</keyword>
+					<keyword>Village</keyword>
+					<keyword>option</keyword>
+					<keyword>leave</keyword>
+					<keyword>join</keyword>
+					<keyword>empty</keyword>
+					<keyword>amount</keyword>
+					<keyword>buffer</keyword>
+					<keyword>center</keyword>
+					<keyword>get</keyword>
+					<keyword>distance</keyword>
+				</context>
+			</include>
+		</context>
+	</definitions>
+</language>
