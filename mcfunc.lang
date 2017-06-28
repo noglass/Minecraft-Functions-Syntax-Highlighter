@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 11:23:10 AM MDT
+		Wed 28 Jun 2017 11:48:43 AM MDT
 
-	Minecraft Functions Syntax Highlighting v0.0.6
+	Minecraft Functions Syntax Highlighting v0.0.7
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -146,10 +146,7 @@
 							</include>
 						</context>
 						<context style-ref="def:warning" extend-parent="false">
-							<match>{</match>
-						</context>
-						<context style-ref="def:warning" extend-parent="false">
-							<match>}</match>
+							<match>[{}]</match>
 						</context>
 					</include>
 				</context>
