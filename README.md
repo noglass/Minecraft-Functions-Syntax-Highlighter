@@ -19,10 +19,4 @@ GTKSourceView Language File For .mcfunction File Syntax Highlighting
 		http://i.imgur.com/aXBaBDC.png - Curly brace issue
 		http://i.imgur.com/EuAWlV8.png - Default keywords
 		http://i.imgur.com/Lf3cB7E.png - Pretty Colors
-	
-	Known problems:
-
-		Curly braces embedded within curly braces are not
-	*	respected with their natural opening and closing.
-		Example:
-			summon minecraft:ocelot ~ ~ ~ {Attributes:[{Base:1.0,Name:"generic.movementSpeed"},{Base:8.0,Name:"generic.followRange"}],CustomName:"Lightning McKitty",CustomNameVisible:1}
+		
