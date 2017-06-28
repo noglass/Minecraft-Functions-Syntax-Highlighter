@@ -124,12 +124,12 @@
 					<end>'</end>
 				</context>
 				
-				<context id="data" end-at-line-end="true" style-ref="data">
-					<start>{</start>
-					<end>}</end>
+				<context id="data" style-ref="def:type">
+					<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
 					<include>
-						<context style-ref="def:type" extend-parent="false">
-							<match>\%{name}:</match>
+						<context sub-pattern="open" style-ref="data"/>
+						<context sub-pattern="close" style-ref="data"/>
+							<!--<match>\%{name}:</match>
 						</context>
 						<context ref="string"/>
 						<context ref="char"/>
@@ -137,7 +137,7 @@
 						<context ref="float"/>
 						<context style-ref="def:string" extend-parent="false">
 							<match>[\w.:_-]</match>
-						</context>
+						</context>-->
 					</include>
 				</context>
 	
