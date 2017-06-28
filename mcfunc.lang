@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 11:01:57 AM MDT
+		Wed 28 Jun 2017 11:23:10 AM MDT
 
-	Minecraft Functions Syntax Highlighting v0.0.5
+	Minecraft Functions Syntax Highlighting v0.0.6
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -138,17 +138,17 @@
 						<context style-ref="def:string" extend-parent="false">
 							<match>[\w.:_-]</match>
 						</context>
-						<context style-ref="def:type" extend-parent="true">
+						<context style-ref="def:type" extend-parent="false">
 							<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
 							<include>
 								<context sub-pattern="open" style-ref="def:identifier"/>
 								<context sub-pattern="close" style-ref="def:identifier"/>
 							</include>
 						</context>
-						<context style-ref="error" extend-parent="false">
+						<context style-ref="def:warning" extend-parent="false">
 							<match>{</match>
 						</context>
-						<context style-ref="error" extend-parent="false">
+						<context style-ref="def:warning" extend-parent="false">
 							<match>}</match>
 						</context>
 					</include>
