@@ -15,8 +15,8 @@ GTKSourceView Language File For .mcfunction File Syntax Highlighting
 	
 	Preview Sample Images:
 	
+		http://i.imgur.com/vAkR1De.png - Unbalanced curly braces
 		http://i.imgur.com/5cRzftA.png - Error highlighting
-		http://i.imgur.com/aXBaBDC.png - Curly brace issue
 		http://i.imgur.com/EuAWlV8.png - Default keywords
 		http://i.imgur.com/Lf3cB7E.png - Pretty Colors
 		
