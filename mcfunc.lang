@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 11:48:43 AM MDT
+		Wed 28 Jun 2017 12:13:22 PM MDT 
 
-	Minecraft Functions Syntax Highlighting v0.0.7
+	Minecraft Functions Syntax Highlighting v0.0.8
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -14,6 +14,9 @@
 	FIXED	respected with their natural opening and closing.
 		Example:
 			summon minecraft:ocelot ~ ~ ~ {Attributes:[{Base:1.0,Name:"generic.movementSpeed"},{Base:8.0,Name:"generic.followRange"}],CustomName:"Lightning McKitty",CustomNameVisible:1}
+		
+	*	Text within nested curly braces does not recieve
+		highlighting.
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -41,7 +44,6 @@
 	        <style id="operator" _name="Operators" map-to="def:operator"/>
 		<style id="comment" _name="Comment" map-to="def:comment"/>
 		<style id="error" _name="Error" map-to="def:error"/>
-		<style id="warning" _name="Warning" map-to="def:warning"/>
 		<style id="string" _name="String" map-to="def:string"/>
 		<style id="data" _name="NBT Data Tag" map-to="def:statement"/>
 		<style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
@@ -119,11 +121,6 @@
 					<end>"</end>
 				</context>
 				
-				<context id="char" end-at-line-end="true" style-ref="string">
-					<start>'</start>
-					<end>'</end>
-				</context>
-				
 				<context id="data" end-at-line-end="true" style-ref="data">
 					<start>{</start>
 					<end>}$</end>
@@ -132,7 +129,6 @@
 							<match>\%{name}:</match>
 						</context>
 						<context ref="string"/>
-						<context ref="char"/>
 						<context ref="def:decimal"/>
 						<context ref="float"/>
 						<context style-ref="def:string" extend-parent="false">
@@ -150,13 +146,6 @@
 						</context>
 					</include>
 				</context>
-				<!--<context id="data" style-ref="def:type">
-					<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
-					<include>
-						<context sub-pattern="open" style-ref="data"/>
-						<context sub-pattern="close" style-ref="data"/>
-					</include>
-				</context>-->
 	
 				<context ref="def:decimal"/>
 				
