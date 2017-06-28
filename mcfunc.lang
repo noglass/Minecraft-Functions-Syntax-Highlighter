@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 10:11:33 AM MDT
+		Wed 28 Jun 2017 11:01:57 AM MDT
 
-	Minecraft Functions Syntax Highlighting v0.0.4
+	Minecraft Functions Syntax Highlighting v0.0.5
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -124,13 +124,42 @@
 					<end>'</end>
 				</context>
 				
-				<context id="data" style-ref="def:type">
+				<context id="data" end-at-line-end="true" style-ref="data">
+					<start>{</start>
+					<end>}$</end>
+					<include>
+						<context style-ref="def:type" extend-parent="false">
+							<match>\%{name}:</match>
+						</context>
+						<context ref="string"/>
+						<context ref="char"/>
+						<context ref="def:decimal"/>
+						<context ref="float"/>
+						<context style-ref="def:string" extend-parent="false">
+							<match>[\w.:_-]</match>
+						</context>
+						<context style-ref="def:type" extend-parent="true">
+							<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
+							<include>
+								<context sub-pattern="open" style-ref="def:identifier"/>
+								<context sub-pattern="close" style-ref="def:identifier"/>
+							</include>
+						</context>
+						<context style-ref="error" extend-parent="false">
+							<match>{</match>
+						</context>
+						<context style-ref="error" extend-parent="false">
+							<match>}</match>
+						</context>
+					</include>
+				</context>
+				<!--<context id="data" style-ref="def:type">
 					<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
 					<include>
 						<context sub-pattern="open" style-ref="data"/>
 						<context sub-pattern="close" style-ref="data"/>
 					</include>
-				</context>
+				</context>-->
 	
 				<context ref="def:decimal"/>
 				
