@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-		Wed 28 Jun 2017 12:13:22 PM MDT 
+		Wed Jan 10 12:16:04 MST 2018 
 
-	Minecraft Functions Syntax Highlighting v0.0.8
+	Minecraft Functions Syntax Highlighting v0.1.0
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -32,7 +32,6 @@
 
 <language id="mcfunc" _name="Minecraft Functions" version="2.0" _section="Script">
 	<metadata>
-		<property name="mimetypes">text/plain</property>
 		<property name="globs">*.mcfunction</property>
 		<property name="line-comment-start">#</property>
 	</metadata>
@@ -54,6 +53,11 @@
 		<context id="mcfunc">
 			<include>
 				<define-regex id="name">[[:alnum:]/.:_-]*</define-regex>
+				
+				<context id="comment" style-ref="comment">
+					<start>^[ \t]*#</start>
+					<end>$</end>
+				</context>
 				
 				<context id="float" style-ref="floating-point">
 					<match extended="true">
@@ -103,11 +107,6 @@
 					<match>@\w</match>
 				</context>
 				
-				<context id="comment" style-ref="comment">
-					<start>#</start>
-					<end>$</end>
-				</context>
-				
 				<context id="error" style-ref="error">
 					<match>^(\/)(.*)$</match>
 					<include>
@@ -134,16 +133,6 @@
 						<context style-ref="def:string" extend-parent="false">
 							<match>[\w.:_-]</match>
 						</context>
-						<context style-ref="def:type" extend-parent="false">
-							<match>(?&lt;open&gt;{)(([^{}]+)|(?R))*(?&lt;close&gt;})</match>
-							<include>
-								<context sub-pattern="open" style-ref="def:identifier"/>
-								<context sub-pattern="close" style-ref="def:identifier"/>
-							</include>
-						</context>
-						<context style-ref="def:warning" extend-parent="false">
-							<match>[{}]</match>
-						</context>
 					</include>
 				</context>
 	
@@ -151,14 +140,12 @@
 				
 				<context id="types" style-ref="type">
 					<keyword>advancement</keyword>
-					<keyword>blockdata</keyword>
 					<keyword>clear</keyword>
 					<keyword>clone</keyword>
 					<keyword>defaultgamemode</keyword>
 					<keyword>difficulty</keyword>
 					<keyword>effect</keyword>
-					<keyword>enchant</keyword>
-					<keyword>entitydata</keyword>
+					<keyword>data</keyword>
 					<keyword>execute</keyword>
 					<keyword>fill</keyword>
 					<keyword>function</keyword>
@@ -191,16 +178,16 @@
 					<keyword>msg</keyword>
 					<keyword>w</keyword>
 					<keyword>tellraw</keyword>
-					<keyword>testfor</keyword>
-					<keyword>testforblock</keyword>
-					<keyword>testforblocks</keyword>
 					<keyword>time</keyword>
 					<keyword>title</keyword>
-					<keyword>toggledownfall</keyword>
 					<keyword>trigger</keyword>
 					<keyword>weather</keyword>
 					<keyword>worldborder</keyword>
 					<keyword>xp</keyword>
+					<keyword>tag</keyword>
+					<keyword>team</keyword>
+					<keyword>experience</keyword>
+					<keyword>run</keyword>
 				</context>
 				<context id="keywords" style-ref="keyword">
 					<keyword>players</keyword>
@@ -279,11 +266,15 @@
 					<keyword>teamkill</keyword>
 					<keyword>killedByTeam</keyword>
 					<keyword>team</keyword>
+					<keyword>result</keyword>
+					<keyword>success</keyword>
+					<keyword>score</keyword>
+					<keyword>eyes</keyword>
+					<keyword>feet</keyword>
 				</context>
 				<context id="operators" style-ref="operator">
 					<keyword>add</keyword>
 					<keyword>remove</keyword>
-					<keyword>tag</keyword>
 					<keyword>set</keyword>
 					<keyword>reset</keyword>
 					<keyword>query</keyword>
@@ -304,10 +295,6 @@
 					<keyword>false</keyword>
 					<keyword>if</keyword>
 					<keyword>unless</keyword>
-					<keyword>s</keyword>
-					<keyword>c</keyword>
-					<keyword>a</keyword>
-					<keyword>sp</keyword>
 					<keyword>announceAdvancements</keyword>
 					<keyword>commandBlockOutput</keyword>
 					<keyword>disableElytraMovementCheck</keyword>
@@ -349,6 +336,19 @@
 					<keyword>center</keyword>
 					<keyword>get</keyword>
 					<keyword>distance</keyword>
+					<keyword>merge</keyword>
+					<keyword>entity</keyword>
+					<keyword>block</keyword>
+					<keyword>as</keyword>
+					<keyword>at</keyword>
+					<keyword>positioned</keyword>
+					<keyword>align</keyword>
+					<keyword>facing</keyword>
+					<keyword>rotated</keyword>
+					<keyword>in</keyword>
+					<keyword>anchored</keyword>
+					<keyword>store</keyword>
+					<keyword>blocks</keyword>
 				</context>
 			</include>
 		</context>
