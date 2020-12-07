@@ -15,7 +15,7 @@ GTKSourceView Language File For .mcfunction File Syntax Highlighting
 	
 Preview Sample Images:  
 
-https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot0.png  
-https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot1.png  
-https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot2.png  
-https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot3.png
+![shot0](https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot0.png)
+![shot1](https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot1.png)
+![shot2](https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot2.png)
+![shot3](https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot3.png)
