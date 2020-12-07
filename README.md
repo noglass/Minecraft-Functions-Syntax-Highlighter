@@ -15,8 +15,7 @@ GTKSourceView Language File For .mcfunction File Syntax Highlighting
 	
 	Preview Sample Images:
 	
-		http://i.imgur.com/vAkR1De.png - Unbalanced curly braces
-		http://i.imgur.com/5cRzftA.png - Error highlighting
-		http://i.imgur.com/EuAWlV8.png - Default keywords
-		http://i.imgur.com/Lf3cB7E.png - Pretty Colors
-		
+		https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot0.png  
+		https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot1.png  
+		https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot2.png  
+		https://raw.githubusercontent.com/noglass/Minecraft-Functions-Syntax-Highlighter/dev/shot3.png
