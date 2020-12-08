@@ -1,5 +1,8 @@
 # Minecraft-Functions-Syntax-Highlighter
-GTKSourceView Language File For .mcfunction File Syntax Highlighting
+GTKSourceView Language File For .mcfunction File Syntax Highlighting  
+Allows syntax highlighting of .mcfunction files for text editors that use GTK-3.0 like gedit.  
+
+Supports up to Minecraft version 1.17
 
 	Usage:
 	
