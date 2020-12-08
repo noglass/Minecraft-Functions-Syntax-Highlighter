@@ -2,7 +2,7 @@
 <!--
 		Wed Jan 10 12:16:04 MST 2018 
 
-	Minecraft Functions Syntax Highlighting v0.1.0
+	Minecraft Functions Syntax Highlighting v0.2.0
 
 	Author: nigathan <nigathan@justca.me>
 
@@ -10,13 +10,7 @@
 
 	Known problems:
 
-		Curly braces embedded within curly braces are not
-	FIXED	respected with their natural opening and closing.
-		Example:
-			summon minecraft:ocelot ~ ~ ~ {Attributes:[{Base:1.0,Name:"generic.movementSpeed"},{Base:8.0,Name:"generic.followRange"}],CustomName:"Lightning McKitty",CustomNameVisible:1}
-		
-	*	Text within nested curly braces does not recieve
-		highlighting.
+		None!
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
